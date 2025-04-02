@@ -1,6 +1,6 @@
 # DrugsWebsite
 
-A Drugs Management System developed as part of a Cloud Computing course. The system provides a robust platform for managing drug inventory, prescriptions, 
+A Drugs Management System that provides a robust platform for managing drug inventory, prescriptions, 
 and data storage with cloud integration.
 
 Project Structure:
