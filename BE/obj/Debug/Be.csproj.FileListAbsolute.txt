@@ -1,0 +1,17 @@
+C:\Users\User\Desktop\Project-Gui\BE\bin\Debug\BE.dll
+C:\Users\User\Desktop\Project-Gui\BE\bin\Debug\BE.pdb
+C:\Users\User\Desktop\Project-Gui\BE\obj\Debug\BE.dll
+C:\Users\User\Desktop\Project-Gui\BE\obj\Debug\BE.pdb
+C:\Users\User\Desktop\Project-Gui\BE\obj\Debug\BE.csproj.CoreCompileInputs.cache
+C:\Users\User\Downloads\DrugsWebsite\BE\bin\Debug\BE.dll
+C:\Users\User\Downloads\DrugsWebsite\BE\bin\Debug\BE.pdb
+C:\Users\User\Downloads\DrugsWebsite\BE\obj\Debug\BE.csproj.CoreCompileInputs.cache
+C:\Users\User\Downloads\DrugsWebsite\BE\obj\Debug\BE.dll
+C:\Users\User\Downloads\DrugsWebsite\BE\obj\Debug\BE.pdb
+C:\Users\User\Downloads\DrugsWebsite\BE\obj\Debug\BE.csprojAssemblyReference.cache
+C:\Users\User\Desktop\DrugsWebsite\BE\bin\Debug\BE.dll
+C:\Users\User\Desktop\DrugsWebsite\BE\bin\Debug\BE.pdb
+C:\Users\User\Desktop\DrugsWebsite\BE\obj\Debug\BE.csprojAssemblyReference.cache
+C:\Users\User\Desktop\DrugsWebsite\BE\obj\Debug\BE.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\DrugsWebsite\BE\obj\Debug\BE.dll
+C:\Users\User\Desktop\DrugsWebsite\BE\obj\Debug\BE.pdb
