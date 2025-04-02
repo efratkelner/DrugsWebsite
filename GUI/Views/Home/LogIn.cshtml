@@ -1,0 +1,149 @@
+﻿@model GUI.Models.AdministratorViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="en" class="parallax-window" data-parallax="scroll" style="opacity:0.8;" data-image-src="/images/file-20170621-28012-10279t7.jpg">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Parallo -App Landing Page</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" />
+    <link rel="stylesheet" href="/css/all.min.css" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/templatemo-style.css" />
+
+</head>
+
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="container-fluid">
+            <div class="row tm-brand-row">
+                <div class="col-lg-4 col-11">
+                    <div class="tm-brand-container tm-bg-white-transparent" style="position:relative; height:122px; ">
+                        <i class="fas fa-2x fa-pen tm-brand-icon"></i>
+                        <div class="tm-brand-texts">
+                            <h1 class="text-uppercase tm-brand-name">Prescription</h1>
+                            <p class="small">
+                                because prevention is better than cure
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- The grid: three columns -->
+        <div class="row">
+            <div class="column" onclick="openTab('b1');" style="background:white; opacity:0.9;">LogIn</div>
+            <div class="column" onclick="openTab('b2');" style="background: white; opacity: 0.9;">How to use our website</div>
+            <div class="column" onclick="openTab('b3');" style="background: white; opacity: 0.9;">Why Use our Webtie</div>
+        </div>
+        
+        <!-- The expanding grid (hidden by default) -->
+        <div id="b1" class="containerTab" style="display:none;background:black; color:white; opacity:0.7">
+            <!-- If you want the ability to close the container, add a close button -->
+            <span onclick="this.parentElement.style.display='none'" class="closebtn" style="color:white;">x</span>
+            <h1 class="tm-call-to-action-title text-sm-center">Log In</h1>
+            <h5 class="text-center">please enter your id or password for the admin:</h5>
+            <div class="form-group">
+                <div class="align-content-lg-center text-center">
+                    @Html.PasswordFor(model => model.Password, new { htmlAttributes = new { @class = "tm-bg-white-transparent " } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="tm-call-to-action-title text-sm-center">
+                <input type="submit" value="LogIn" class="btn btn-primary border-dark" />
+            </div>
+        </div>
+
+
+        <div id="b2" class="containerTab" style="display: none; background: black; color: white; opacity: 0.7">
+            <span onclick="this.parentElement.style.display='none'" class="closebtn" style="color:white;">x</span>
+            <h1 class="tm-call-to-action-title text-sm-center">How to use our website?</h1>
+            <div class="form-group text-sm-center">
+                    <p>Once you have been logged into our system all you have to do is issue prescriptions.<br/>
+                           We will take care of the drug database and the patient database.<br />
+                              You just need to make sure to issue the right medicine</p>
+            </div>
+        </div>
+        <div id="b3" class="containerTab" style="display: none; background: black; color: white; opacity: 0.7">
+            <span onclick="this.parentElement.style.display='none'" class="closebtn" style="color:white;">x</span>
+            <h1 class="tm-call-to-action-title text-sm-center">Why use our website?</h1>
+            <div class="form-group text-sm-center">
+                <p> Prescribing medications as a way of treatment suffers from a number of potential failures that require reference.<br />
+                    Our website helps issue prescriptions and perform tests <br />
+                     to minimize those potential mistakes
+                </p>
+            </div>
+        </div>
+                <script>
+                    function openTab(tabName) {
+                        var i, x;
+                        x = document.getElementsByClassName("containerTab");
+                        for (i = 0; i < x.length; i++) {
+                            x[i].style.display = "none";
+                        }
+                        document.getElementById(tabName).style.display = "block";
+                    }
+                </script>
+
+                <script src="~/js/jquery.min.js"></script>
+                <script src="~/js/parallax.min.js"></script>
+                <script src="~/js/bootstrap.min.js"></script>
+            }
+</body>
+</html>
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+    </script>
+}
+    }
+
+<style>
+
+
+    /* The grid: Three equal columns that floats next to each other */
+    .column {
+        float: left;
+        width: 33.33%;
+        padding: 50px;
+        text-align: center;
+        font-size: 25px;
+        cursor: pointer;
+        color: black;
+    }
+
+    .containerTab {
+        padding: 20px;
+        color: black;
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    /* Closable button inside the image */
+    .closebtn {
+        float: right;
+        color: black;
+        font-size: 35px;
+        cursor: pointer;
+    }
+</style>

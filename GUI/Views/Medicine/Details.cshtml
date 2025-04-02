@@ -1,0 +1,75 @@
+﻿@model IEnumerable<GUI.Models.MedicineViewModel>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/MainLayout.cshtml";
+}
+
+
+<section class="row tm-contact-row" style="background-color:white; position:relative; left:120px; top:-120px; width:1300px; opacity:0.8;">
+    <label style="position:relative; top:-40px; left:10px;  color:black;">Search by NDC id or by medicine name:</label>
+    <input type="text" id="myInput" onkeyup="myFunction()" style="position:relative; width:300px; top:-10px; right:320px;  color:black;">
+    <table class="table" id="myTable">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Ndc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MImage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Producer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GenericName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActiveIngredients)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Properties)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ndc)
+                </td>
+                <td>
+                    @Html.ImageActionLink("Link Display Text", "Index", "Home", null, null, item.MImage, 120)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Producer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GenericName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ActiveIngredients)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Properties)
+                </td>
+            </tr>
+        }
+
+    </table>
+</section>
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+    </script>
+}

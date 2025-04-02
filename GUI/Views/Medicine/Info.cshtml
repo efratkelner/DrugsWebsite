@@ -1,0 +1,179 @@
+﻿@model IEnumerable<GUI.Models.MedicineViewModel>
+
+@{
+    ViewBag.Title = "Info";
+    Layout = "~/Views/MainLayout.cshtml";
+}
+
+
+
+<!doctype html>
+<html>
+<head>
+    <script src="~/Scripts/Chart.min.js"></script>
+    <script src="~/Scripts/utils.js"></script>
+
+    <meta name="NetsparkQuiltingResult" total-length="4215" removed="0" rules-found="w2339,w2713,w3914,w3082,w5163" />
+</head>
+<body>
+    <i class='fas fa-angle-right'></i>
+    <div class="form-group" style="background-color:white; position:relative; left:125px; top:50px; width:1280px; opacity:0.8;">
+        <br />
+        <button class="fas btn" onclick="goBack()" style="position:relative; left:1170px; top:-20px;">	&#xf35a;</button>
+        <h1 class="tm-call-to-action-title text-sm-center font-weight-bold">Medicine Consumption Data</h1>
+        <p class="tm-home-text text-center">
+            You can see how many times a specific medicine has been prescribed in a given period.
+        </p>
+        <div class="form-group center-block tm-home-text text-center" style="position:relative; top:-60px;">
+            <select id="med_activeIngredentce" required="" style="position:relative; color:black; width:300px; left:80px; border-color:black;">
+                <option value="1">one</option>
+                <option value="2">two</option>
+                <option value="3">three</option>
+                <option value="4">four</option>
+            </select>
+            <div class="btn-group-vertical" style="position:relative; right:150px;  top:50px;">
+                <input type="submit"  class="btn btn-outline-dark" data-toggle="collapse" data-target="#demo" value="check"/>
+            </div>
+        </div>
+        <div id="demo" class="collapse tm-bg-white-transparent">
+            <canvas id="canvas"></canvas>
+        </div>
+    </div>
+    <script>
+        var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        var randomScalingFactor = function () {
+            return Math.round(Math.random() * 100);
+        };
+        var config = {
+            type: 'line',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                datasets: [{
+                    label: 'Medicine 1',
+                    backgroundColor: window.chartColors.red,
+                    borderColor: window.chartColors.red,
+                    data: [
+                        1, 1, 1, 1, 1, 1, 1  //number of prescriptions data
+                    ],
+                    fill: false,
+                }]
+            },
+            options: {
+                responsive: true,
+
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Month'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Value'
+                        },
+                        ticks: {
+                            min: 0,
+                            max: 100,
+
+                            // forces step size to be 5 units
+                            stepSize: 5
+                        }
+                    }]
+                }
+            }
+        };
+
+        window.onload = function () {
+            var ctx = document.getElementById('canvas').getContext('2d');
+            window.myLine = new Chart(ctx, config);
+        };
+
+        document.getElementById('randomizeData').addEventListener('click', function () {
+            config.data.datasets.forEach(function (dataset) {
+                dataset.data = dataset.data.map(function () {
+                    return randomScalingFactor();
+                });
+            });
+
+            window.myLine.update();
+        });
+
+        var colorNames = Object.keys(window.chartColors);
+        document.getElementById('addDataset').addEventListener('click', function () {
+            var colorName = colorNames[config.data.datasets.length % colorNames.length];
+            var newColor = window.chartColors[colorName];
+            var newDataset = {
+                label: f(),
+                backgroundColor: newColor,
+                borderColor: newColor,
+                data: [],
+                fill: false
+            };
+
+            for (var index = 0; index < config.data.labels.length; ++index) {
+                newDataset.data.push(randomScalingFactor());
+            }
+
+            config.data.datasets.push(newDataset);
+            window.myLine.update();
+        });
+
+        document.getElementById('addData').addEventListener('click', function () {
+            if (config.data.datasets.length > 0) {
+                var month = MONTHS[config.data.labels.length % MONTHS.length];
+                config.data.labels.push(month);
+
+                config.data.datasets.forEach(function (dataset) {
+                    dataset.data.push(randomScalingFactor());
+                });
+
+                window.myLine.update();
+            }
+        });
+
+        document.getElementById('removeDataset').addEventListener('click', function () {
+            config.data.datasets.splice(0, 1);
+            window.myLine.update();
+        });
+
+        document.getElementById('removeData').addEventListener('click', function () {
+            config.data.labels.splice(-1, 1); // remove the label first
+
+            config.data.datasets.forEach(function (dataset) {
+                dataset.data.pop();
+            });
+
+            window.myLine.update();
+        });
+
+    </script>
+</body>
+
+</html>
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+    </script>
+}
+<script>
+    function f() {
+        var el = document.getElementById('med_activeIngredentce');
+        return el.options[el.selectedIndex].innerHTML;
+    }
+</script>

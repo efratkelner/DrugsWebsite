@@ -1,0 +1,79 @@
+﻿@model GUI.Models.PD
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/PrescriptionLayout.cshtml";
+}
+<body>
+    <div class="card" style="width:400px; left:120px; opacity:0.9;">
+        <img class="card-img-top" src="~/img/blackwhitedoctor.png" alt="Card image">
+        <div class="card-body">
+            <h1 class="card-title text-dark font-weight-bold">Personal Details:</h1>
+            <h4 class="card-text font-weight-bold">Name:</h4> @Model.doctor.FName @Model.doctor.LName
+        <h4 class="card-text font-weight-bold">Specialty Field:</h4>  @Model.doctor.Specialty
+        <h4 class="card-text font-weight-bold">License Number:</h4>  @Model.doctor.Licensing
+        <h4 class="card-text font-weight-bold">Phone Number:</h4> @Model.doctor.PhoneNumber
+        <h4 class="card-text font-weight-bold">Email Address:</h4> @Model.doctor.email
+            <br />
+        <button class="btn btn-outline-dark btn-block" style="position:relative;">@Html.ActionLink("Logout", "LogIn", "Home")</button>
+        </div>
+    </div>
+    <section class="row tm-contact-row" style="background-color:white; position:relative; left:600px; top:-870px;  width:840px; opacity:0.8;">
+        <label style="position:relative; top:-40px; left:10px;  color:black;">Enter patient's id/last name:</label>
+        <input type="text" id="myInput" onkeyup="myFunction()" style="position:relative; width:300px; top:-10px; right:230px;  color:black;">
+        <table class="table" id="myTable">
+            <tr>
+                <th>
+                    <label>Id</label>
+                </th>
+                <th>
+                    <label>First Name</label>
+                </th>
+                <th>
+                    <label>Last Name</label>
+                </th>
+                <th>
+                    <label>Gender</label>
+                </th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model.patients)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdP)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.gender)
+                    </td>
+
+                    <td class="form-group">
+                        @Html.ActionLink("Issue Prescription", "Create", new { id = item.Id, idD = Model.doctor.Id }) |
+                        @Html.ActionLink("Medical History", "PatientHistory", new { id = item.Id })
+                    </td>
+
+                </tr>
+            }
+        </table>
+
+    </section>
+</body>
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+    </script>    
+
+}
+
+

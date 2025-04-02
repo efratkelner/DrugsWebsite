@@ -1,0 +1,24 @@
+﻿@model GUI.Models.Note
+@{
+    ViewBag.Title = "Note";
+    Layout = "~/Views/PrescriptionLayout.cshtml";
+}
+
+
+<div class="col-lg-offset-8 align-self-md-center">
+    <div class="tm-bg-white-transparent text-center tm-services-header tm-testimonials-header">
+        <h2 class="text-uppercase tm-services-page-title tm-testimonials-page-title">Head Line</h2>
+        <h4 class="font-weight-bold">Notes:</h4>
+        <p class="tm-services-description mb-0 small">
+
+        </p>
+        <div class="btn tm-bg-black-transparent " >
+            @Html.ActionLink("Medical History", "Index","Prescription")
+        </div>
+    </div>
+
+</div>
+
+
+
+

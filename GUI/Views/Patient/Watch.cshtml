@@ -1,0 +1,84 @@
+﻿@model IEnumerable<GUI.Models.PatientViewModel>
+
+@{
+    ViewBag.Title = "Watch";
+    Layout = "~/Views/MainLayout.cshtml";
+}
+
+<section class="row tm-contact-row" style="background-color:white; position:relative; left:120px; top:-120px; width:1300px; opacity:0.8;">
+    <label style="position:relative; top:-40px; left:10px;  color:black;">Search by id or by last name:</label>
+    <input type="text" id="myInput" onkeyup="myFunction()" style="position:relative; width:300px; top:-10px; right:230px;  color:black;">
+    <table class="table" id="myTable">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfBirthd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfRegistration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhonNumber)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdP)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfBirthd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfRegistration)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhonNumber)
+                </td>
+                <td class="form-group">
+                    @Html.ActionLink("Medical History", "History", "Prescription", new { @id = item.Id }, null)
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</section>
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+    </script>
+}

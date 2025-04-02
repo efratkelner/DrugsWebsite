@@ -1,0 +1,89 @@
+﻿@model GUI.Models.PrescriptionD
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/PrescriptionLayout.cshtml";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<body>
+    <div class="card" style="width:400px; left:120px; opacity:0.9;">
+        <img class="card-img-top" src="~/img/blackwhitedoctor.png" alt="Card image">
+        <div class="card-body">
+            <h1 class="card-title text-dark font-weight-bold">Personal Details:</h1>
+            <h4 class="card-text font-weight-bold">Name:</h4> @Model.doctor.FName @Model.doctor.LName
+            <h4 class="card-text font-weight-bold">Specialty Field:</h4>  @Model.doctor.Specialty
+            <h4 class="card-text font-weight-bold">License Number:</h4>  @Model.doctor.Licensing
+            <h4 class="card-text font-weight-bold">Phone Number:</h4> @Model.doctor.PhoneNumber
+            <h4 class="card-text font-weight-bold">Email Address:</h4> @Model.doctor.email
+            <br />
+            <button class="btn btn-outline-dark btn-block" style="position:relative;">@Html.ActionLink("Logout", "LogIn", "Home")</button>
+        </div>
+    </div>
+        <div class="form-horizontal">
+            <section class="row tm-contact-row" style="background-color:white; position:relative; left:570px; top:-870px; width:840px; opacity:0.8;">
+                <div class="col-lg-6 tm-contact-col-left">
+                    <form action="#" method="POST" id="tmContactForm" style="position:relative; left:550px; top:-150px; width:850px; opacity:0.9; " class="tm-bg-white-transparent tm-contact-form">
+                        <div style="color:black; width:800px; left:50px; position:relative; text-emphasis-color:black;">
+                            <label id="IdS">@DateTime.Now</label>
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group" style="position:relative; left:500px;">
+                                <div class="col-md-10">
+                                    <h4 class=" font-weight-bold">Patient Dateils:</h4>
+                                    <label class=" font-weight-bold">Id:</label>  @Model.patient.Id
+                                    <br />
+                                    <label class=" font-weight-bold">Name:</label> @Model.patient.FName @Model.patient.LName
+                                    <br />
+                                    <label class=" font-weight-bold">Gender:</label>@Model.patient.gender
+                                    <br />
+                                    <lable class=" font-weight-bold">Date of Birth:</lable><label id="Id" >@Model.patient.DateOfBirthd</label>
+                                    <br />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.prescription.medicineName, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.prescription.medicineName, new { htmlAttributes = new { @class = "form-control text-dark" } })
+                                    @Html.ValidationMessageFor(model => model.prescription.medicineName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.prescription.Start, htmlAttributes: new { @class = "control-label col-md-10" })
+                                <div class="col-md-10">
+                                    <input type="date" class="form-control text-dark">
+                                </div>
+                                @Html.LabelFor(model => model.prescription.End, htmlAttributes: new { @class = "control-label col-md-6" })
+                                <div class="col-md-10">
+                                    <input type="date" class="form-control text-dark">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.prescription.notes, htmlAttributes: new { @class = "control-label col-md-6" })
+                                <div class="col-md-10">
+                                    <textarea rows="5" class="form-control text-dark"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div div class="form-group" style="position:relative; left:220px;">
+                                    <input type="submit" value="Issue Prescription" class="btn btn-primary tm-btn-submit rounded-0" />
+
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+    
+        </section>
+
+    </div>
+</body>
+}
